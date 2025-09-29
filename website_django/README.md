@@ -1,6 +1,6 @@
 # Tutorial Django: Membangun Aplikasi Blog Sederhana
 
-Selamat datang di repositori untuk seri tutorial "Django untuk Pemula". Dalam tutorial ini, kita akan membangun aplikasi blog sederhana dari awal menggunakan Django.
+Selamat datang di repositori untuk seri tutorial "Django untuk Pemula". Repositori ini berisi kode sumber lengkap dan panduan langkah demi langkah untuk membangun aplikasi blog sederhana dari awal menggunakan Django.
 
 ## Deskripsi Proyek
 
@@ -8,17 +8,30 @@ Proyek ini adalah aplikasi web blog yang memungkinkan admin untuk membuat, memba
 
 ## Fitur
 
-* Manajemen Postingan Blog (CRUD) melalui Django Admin.
-* Tampilan daftar semua postingan blog.
-* Tampilan detail untuk setiap postingan.
+*   Manajemen Postingan Blog (CRUD) melalui Django Admin.
+*   Tampilan daftar semua postingan blog.
+*   Tampilan detail untuk setiap postingan.
+
+## Tutorial Guides
+
+Berikut adalah panduan langkah demi langkah untuk tutorial ini. Setiap bagian mencakup penjelasan konsep dan kode yang relevan.
+
+*   [**Part 0: Membuat Virtual Environment**](./tutorial/00-virtual-environment.md) - Pelajari mengapa dan bagaimana menggunakan virtual environment untuk proyek Python.
+*   [**Part 1: Membuat Proyek Django**](./tutorial/01-project-setup.md) - Instalasi Django dan pembuatan struktur proyek awal.
+*   [**Part 2: Membuat App Blog**](./tutorial/02-creating-an-app.md) - Cara membuat aplikasi baru di dalam proyek Django dan mendaftarkannya.
+*   [**Part 3: Model dan Migrasi**](./tutorial/03-model-and-migrations.md) - Mendefinisikan struktur data dengan Model dan menerapkannya ke database dengan migrasi.
+*   [**Part 4: Mengelola Data melalui Halaman Admin**](./tutorial/04-django-admin.md) - Menggunakan Django Admin untuk mengelola data aplikasi.
+*   [**Part 5: Mengenal Routing URL dan Views**](./tutorial/05-urls-and-views.md) - Dasar-dasar penanganan permintaan web dengan Views dan URL.
+*   [**Part 6: Menampilkan Data di Halaman Web**](./tutorial/06-list-view-and-templates.md) - Menggunakan Template Django untuk menampilkan daftar data dari database.
+*   [**Part 7: Menampilkan Detail Postingan Blog**](./tutorial/07-detail-view.md) - Membuat halaman detail untuk setiap item data.
 
 ## Prasyarat
 
-* Python 3.10 atau lebih tinggi
-* Pip (Package Installer for Python)
-* Git
+*   Python 3.10 atau lebih tinggi
+*   Pip (Package Installer for Python)
+*   Git
 
-## Instalasi dan Setup
+## Instalasi dan Setup (Kode Final)
 
 1.  **Clone repositori ini:**
     ```bash
@@ -27,12 +40,12 @@ Proyek ini adalah aplikasi web blog yang memungkinkan admin untuk membuat, memba
     ```
 
 2.  **Buat dan aktifkan virtual environment:**
-    * **Windows:**
+    *   **Windows:**
         ```bash
         python -m venv .venv
         .\.venv\Scripts\activate
         ```
-    * **macOS/Linux:**
+    *   **macOS/Linux:**
         ```bash
         python -m venv .venv
         source .venv/bin/activate
@@ -58,12 +71,3 @@ Proyek ini adalah aplikasi web blog yang memungkinkan admin untuk membuat, memba
     python manage.py runserver
     ```
     Buka browser Anda dan kunjungi `http://127.0.0.1:8000/blogs/`.
-
-## Struktur Tutorial
-
-Setiap bagian dari tutorial ini akan disimpan dalam branch yang berbeda untuk memudahkan navigasi.
-
-* **main**: Kode akhir dari proyek.
-* **part-1-setup-project**: Hasil dari Bagian 1: Membuat Proyek Django.
-* **part-2-membuat-app-blog**: Hasil dari Bagian 2: Membuat App Blog.
-* dan seterusnya...
