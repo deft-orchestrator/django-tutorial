@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Blog List</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'blogs/css/blogs.css' %}">
 </head>
 <body>
     <h1>Blog List</h1>
     <ul>
-        {% for post in blog_posts %}
+        {% for post in page_obj %}
             <li>
                 <h2><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a></h2>
             </li>
@@ -16,5 +18,19 @@
             <li>No blog posts available.</li>
         {% endfor %}
     </ul>
+
+    <div class="pagination">
+        <span>
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+            {% endif %}
+
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">Next</a>
+            {% endif %}
+        </span>
+    </div>
 </body>
 </html>
