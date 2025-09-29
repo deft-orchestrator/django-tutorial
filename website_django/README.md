@@ -74,41 +74,39 @@ Berikut adalah panduan langkah demi langkah untuk tutorial ini. Setiap bagian me
 
 
 
-# Part 4: Mengelola Data Blog melalui Django Admin
 
-Dokumentasi ini menjelaskan secara detail langkah-langkah yang dilakukan pada part 4 tutorial membangun aplikasi blog sederhana dengan Django.
+# Part 5: Routing URL dan Views di Django
 
-## Tujuan Part 4
-- Mengelola data postingan blog menggunakan halaman admin bawaan Django
-- Mendaftarkan model `Post` ke admin agar bisa CRUD data blog
+Dokumentasi ini menjelaskan secara detail langkah-langkah yang dilakukan pada part 5 tutorial membangun aplikasi blog sederhana dengan Django.
+
+## Tujuan Part 5
+- Membuat routing URL dan views untuk menampilkan halaman blog sederhana
 
 ## Langkah-langkah
 
-1. **Membuat Superuser**
-     - Jalankan perintah berikut di terminal:
-         ```bash
-         python manage.py createsuperuser
-         ```
-     - Ikuti instruksi untuk membuat akun admin.
-
-2. **Menjalankan Server dan Mengakses Admin**
-     - Jalankan server:
-         ```bash
-         python manage.py runserver
-         ```
-     - Buka browser dan akses `http://127.0.0.1:8000/admin/`.
-
-3. **Mendaftarkan Model Post ke Admin**
-     - Tambahkan kode berikut ke `blogs/admin.py`:
+1. **Membuat Fungsi View Home**
+     - Tambahkan kode berikut ke `blogs/views.py`:
          ```python
-         from django.contrib import admin
-         from .models import Post
+         from django.http import HttpResponse
 
-         admin.site.register(Post)
+         def home(request):
+                 html_header_and_title = "<h1>Selamat Datang di Blog Saya</h1>"
+                 return HttpResponse(html_header_and_title)
+         ```
+
+2. **Menambahkan Routing URL di blogs/urls.py**
+     - Tambahkan kode berikut ke `blogs/urls.py`:
+         ```python
+         from django.urls import path
+         from .views import home
+
+         urlpatterns = [
+                 path('', home, name='home'),
+         ]
          ```
 
 ## Hasil Akhir
-- Model `Post` bisa dikelola (CRUD) melalui halaman admin Django.
+- Website sudah bisa menampilkan halaman blog sederhana melalui URL `/blogs/`.
 
 ## Selanjutnya
-- Di part 5, kita akan membuat routing URL dan views untuk menampilkan data blog di website.
+- Di part 6, kita akan menampilkan data postingan blog dari database menggunakan template.
