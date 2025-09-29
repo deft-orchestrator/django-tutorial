@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual Environment
+.venv/
+venv/
+env/
+
+# Database
+*.sqlite3
+db.sqlite3
+
+# File Editor/IDE
+.vscode/
+.idea/
+
+# File Sistem Operasi
+.DS_Store
+Thumbs.db
