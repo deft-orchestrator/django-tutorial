@@ -1,22 +1,26 @@
 
 
-# Part 1: Setup Proyek Django
+
+# Part 2: Membuat App Blog
 
 ## Ringkasan
-Ini adalah langkah pertama dari tutorial membangun aplikasi blog sederhana dengan Django. Di part 1, kita akan melakukan setup awal proyek Django.
+Pada part 2, kita akan membuat aplikasi (app) baru bernama `blogs` di dalam proyek Django yang sudah dibuat pada part 1.
 
 ## Sebelumnya
-Belum ada setup proyek. Anda hanya perlu menyiapkan Python, pip, dan virtual environment.
+Di part 1, kita sudah melakukan setup awal proyek Django dan memiliki struktur dasar project.
 
-## Langkah di Part 1
-1. Membuat virtual environment
-2. Instalasi Django
-3. Membuat proyek Django baru
+## Langkah di Part 2
+1. Membuat app baru dengan perintah:
+	```bash
+	python manage.py startapp blogs
+	```
+2. Memastikan folder `blogs` sudah ada di dalam `website_django/`.
+3. Mendaftarkan app `blogs` ke dalam `INSTALLED_APPS` di `settings.py`.
 
-Ikuti panduan detail di [tutorial/01-project-setup.md](tutorial/01-project-setup.md).
+Ikuti panduan detail di [tutorial/02-creating-an-app.md](tutorial/02-creating-an-app.md).
 
 ## Hasil Akhir
-Setelah part 1, Anda akan memiliki struktur proyek Django yang siap untuk dikembangkan lebih lanjut.
+- Proyek Django kini memiliki app baru bernama `blogs` yang siap dikembangkan untuk fitur blog.
 
 ## Selanjutnya
-Di part 2, kita akan membuat aplikasi blog di dalam proyek Django yang sudah dibuat.
+- Di part 3, kita akan membuat model data untuk blog dan melakukan migrasi database.

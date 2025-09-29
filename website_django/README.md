@@ -71,51 +71,30 @@ Berikut adalah panduan langkah demi langkah untuk tutorial ini. Setiap bagian me
     ```
     Buka browser Anda dan kunjungi `http://127.0.0.1:8000/blogs/`.
 
-# Part 1: Setup Proyek Django
 
-Dokumentasi ini menjelaskan secara detail langkah-langkah yang dilakukan pada part 1 tutorial membangun aplikasi blog sederhana dengan Django.
+# Part 2: Membuat App Blog
 
-## Tujuan Part 1
-- Menyiapkan virtual environment untuk project Python
-- Menginstal Django
-- Membuat struktur awal proyek Django
+Dokumentasi ini menjelaskan secara detail langkah-langkah yang dilakukan pada part 2 tutorial membangun aplikasi blog sederhana dengan Django.
+
+## Tujuan Part 2
+- Membuat aplikasi (app) baru bernama `blogs` di dalam proyek Django
+- Mendaftarkan app ke dalam `INSTALLED_APPS` di `settings.py`
 
 ## Langkah-langkah
 
-1. **Membuat Virtual Environment**
-    - Jalankan perintah berikut di terminal:
-      ```bash
-      python -m venv .venv
-      source .venv/bin/activate  # Untuk Linux/Mac
-      .\.venv\Scripts\activate  # Untuk Windows
-      ```
+1. **Membuat App Blog**
+     - Jalankan perintah berikut di terminal:
+         ```bash
+         python manage.py startapp blogs
+         ```
+     - Pastikan folder `blogs` sudah ada di dalam `website_django/`.
 
-2. **Instalasi Django**
-    - Setelah virtual environment aktif, install Django:
-      ```bash
-      pip install Django
-      ```
-
-3. **Membuat Proyek Django**
-    - Buat folder project (misal: `website_django`) lalu jalankan:
-      ```bash
-      django-admin startproject website_django .
-      ```
-    - Struktur project yang dihasilkan:
-      ```
-      website_django/
-      ├── manage.py
-      └── website_django/
-            ├── __init__.py
-            ├── asgi.py
-            ├── settings.py
-            ├── urls.py
-            └── wsgi.py
-      ```
+2. **Mendaftarkan App ke settings.py**
+     - Buka file `website_django/website_django/settings.py`.
+     - Tambahkan `'blogs.apps.BlogsConfig',` ke dalam list `INSTALLED_APPS`.
 
 ## Hasil Akhir
-- Proyek Django siap digunakan untuk pengembangan lebih lanjut.
-- Belum ada aplikasi (app) khusus, hanya struktur dasar Django.
+- Proyek Django kini memiliki app baru bernama `blogs` yang siap dikembangkan untuk fitur blog.
 
 ## Selanjutnya
-- Di part 2, kita akan membuat aplikasi blog di dalam proyek Django ini.
+- Di part 3, kita akan membuat model data untuk blog dan melakukan migrasi database.
