@@ -1,26 +1,31 @@
 
 
 
-# Part 2: Membuat App Blog
+
+# Part 3: Membuat Model dan Migrasi Database
 
 ## Ringkasan
-Pada part 2, kita akan membuat aplikasi (app) baru bernama `blogs` di dalam proyek Django yang sudah dibuat pada part 1.
+Pada part 3, kita akan membuat model `Post` untuk aplikasi blog dan melakukan migrasi database agar model tersebut tersedia di database.
 
 ## Sebelumnya
-Di part 1, kita sudah melakukan setup awal proyek Django dan memiliki struktur dasar project.
+Di part 2, kita sudah membuat app baru bernama `blogs` dan mendaftarkannya ke Django.
 
-## Langkah di Part 2
-1. Membuat app baru dengan perintah:
+## Langkah di Part 3
+1. Membuat model `Post` di `blogs/models.py` dengan field judul, konten, dan tanggal publikasi.
+2. Membuat file migrasi dengan perintah:
 	```bash
-	python manage.py startapp blogs
+	python manage.py makemigrations blogs
 	```
-2. Memastikan folder `blogs` sudah ada di dalam `website_django/`.
-3. Mendaftarkan app `blogs` ke dalam `INSTALLED_APPS` di `settings.py`.
+3. Menjalankan migrasi ke database:
+	```bash
+	python manage.py migrate
+	```
 
-Ikuti panduan detail di [tutorial/02-creating-an-app.md](tutorial/02-creating-an-app.md).
+Ikuti panduan detail di [tutorial/03-model-and-migrations.md](tutorial/03-model-and-migrations.md).
 
 ## Hasil Akhir
-- Proyek Django kini memiliki app baru bernama `blogs` yang siap dikembangkan untuk fitur blog.
+- Database sudah memiliki tabel untuk menyimpan postingan blog.
+- Model `Post` siap digunakan untuk fitur blog selanjutnya.
 
 ## Selanjutnya
-- Di part 3, kita akan membuat model data untuk blog dan melakukan migrasi database.
+- Di part 4, kita akan mengelola data blog melalui halaman admin Django.

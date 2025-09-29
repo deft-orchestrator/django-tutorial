@@ -72,29 +72,47 @@ Berikut adalah panduan langkah demi langkah untuk tutorial ini. Setiap bagian me
     Buka browser Anda dan kunjungi `http://127.0.0.1:8000/blogs/`.
 
 
-# Part 2: Membuat App Blog
 
-Dokumentasi ini menjelaskan secara detail langkah-langkah yang dilakukan pada part 2 tutorial membangun aplikasi blog sederhana dengan Django.
+# Part 3: Membuat Model dan Migrasi Database
 
-## Tujuan Part 2
-- Membuat aplikasi (app) baru bernama `blogs` di dalam proyek Django
-- Mendaftarkan app ke dalam `INSTALLED_APPS` di `settings.py`
+Dokumentasi ini menjelaskan secara detail langkah-langkah yang dilakukan pada part 3 tutorial membangun aplikasi blog sederhana dengan Django.
+
+## Tujuan Part 3
+- Membuat model `Post` untuk aplikasi blog
+- Melakukan migrasi database agar model tersedia di database
 
 ## Langkah-langkah
 
-1. **Membuat App Blog**
-     - Jalankan perintah berikut di terminal:
-         ```bash
-         python manage.py startapp blogs
-         ```
-     - Pastikan folder `blogs` sudah ada di dalam `website_django/`.
+1. **Membuat Model Post**
+    - Tambahkan kode berikut ke `blogs/models.py`:
+      ```python
+      from django.db import models
+      from django.utils import timezone
 
-2. **Mendaftarkan App ke settings.py**
-     - Buka file `website_django/website_django/settings.py`.
-     - Tambahkan `'blogs.apps.BlogsConfig',` ke dalam list `INSTALLED_APPS`.
+      class Post(models.Model):
+            title = models.CharField(max_length=200)
+            content = models.TextField()
+            published_date = models.DateTimeField(default=timezone.now)
+
+            def __str__(self):
+                 return str(self.title)
+      ```
+
+2. **Membuat File Migrasi**
+    - Jalankan perintah berikut di terminal:
+      ```bash
+      python manage.py makemigrations blogs
+      ```
+
+3. **Menjalankan Migrasi ke Database**
+    - Jalankan perintah berikut di terminal:
+      ```bash
+      python manage.py migrate
+      ```
 
 ## Hasil Akhir
-- Proyek Django kini memiliki app baru bernama `blogs` yang siap dikembangkan untuk fitur blog.
+- Database sudah memiliki tabel untuk menyimpan postingan blog.
+- Model `Post` siap digunakan untuk fitur blog selanjutnya.
 
 ## Selanjutnya
-- Di part 3, kita akan membuat model data untuk blog dan melakukan migrasi database.
+- Di part 4, kita akan mengelola data blog melalui halaman admin Django.
