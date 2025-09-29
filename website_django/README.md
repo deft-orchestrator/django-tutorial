@@ -76,62 +76,80 @@ Berikut adalah panduan langkah demi langkah untuk tutorial ini. Setiap bagian me
 
 
 
-# Part 6: Menampilkan Data Blog dengan Template
 
-Dokumentasi ini menjelaskan secara detail langkah-langkah yang dilakukan pada part 6 tutorial membangun aplikasi blog sederhana dengan Django.
+# Part 7: Menampilkan Detail Postingan Blog
 
-## Tujuan Part 6
-- Menampilkan data postingan blog dari database ke halaman web menggunakan template HTML
+Dokumentasi ini menjelaskan secara detail langkah-langkah yang dilakukan pada part 7 tutorial membangun aplikasi blog sederhana dengan Django.
+
+## Tujuan Part 7
+- Menampilkan detail setiap postingan blog di halaman khusus
 
 ## Langkah-langkah
 
-1. **Membuat Template HTML**
-   - Buat file `post_list.html` di `blogs/templates/blogs/` dengan kode:
+1. **Membuat View post_detail**
+   - Tambahkan kode berikut ke `blogs/views.py`:
+     ```python
+     from django.shortcuts import render, get_object_or_404
+     from .models import Post
+
+     def get_blog_posts(request):
+         blog_posts = Post.objects.all()
+         context = {'blog_posts': blog_posts}
+         return render(request, 'blogs/post_list.html', context)
+
+     def post_detail(request, post_id):
+         post = get_object_or_404(Post, id=post_id)
+         return render(request, 'blogs/post_detail.html', {'post': post})
+     ```
+
+2. **Membuat Template HTML post_detail**
+   - Buat file `post_detail.html` di `blogs/templates/blogs/` dengan kode:
      ```html
      <!DOCTYPE html>
      <html lang="en">
      <head>
          <meta charset="UTF-8">
          <meta name="viewport" content="width=device-width, initial-scale=1">
-         <title>Blog List</title>
+         <title>{{ post.title }}</title>
      </head>
      <body>
-         <h1>Daftar Postingan Blog</h1>
-         <ul>
-             {% for post in blog_posts %}
-                 <li>{{ post.title }}</li>
-             {% empty %}
-                 <li>Tidak ada postingan blog.</li>
-             {% endfor %}
-         </ul>
+         <h1>{{ post.title }}</h1>
+         <p>{{ post.content }}</p>
+         <small>Published on {{ post.published_date }}</small>
+         <br>
+         <a href="{% url 'post_list' %}">Back to Blog List</a>
      </body>
      </html>
      ```
 
-2. **Membuat View post_list**
-   - Tambahkan kode berikut ke `blogs/views.py`:
-     ```python
-     from django.shortcuts import render
-     from .models import Post
-
-     def post_list(request):
-         blog_posts = Post.objects.all()
-         return render(request, 'blogs/post_list.html', {'blog_posts': blog_posts})
-     ```
-
 3. **Update Routing URL di blogs/urls.py**
-   - Update routing agar mengarah ke view `post_list`:
+   - Update routing agar mendukung halaman detail postingan:
      ```python
      from django.urls import path
-     from .views import post_list
+     from .views import get_blog_posts, post_detail
 
      urlpatterns = [
-         path('', post_list, name='post_list'),
+         path('', get_blog_posts, name='post_list'),
+         path('<int:post_id>/', post_detail, name='post_detail'),
      ]
      ```
 
-## Hasil Akhir
-- Website sudah bisa menampilkan daftar postingan blog dari database secara dinamis.
+4. **Update Template post_list agar judul menjadi link**
+   - Update template agar judul postingan menjadi link ke halaman detail:
+     ```html
+     <ul>
+         {% for post in blog_posts %}
+             <li>
+                 <h2><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a></h2>
+             </li>
+         {% empty %}
+             <li>Tidak ada postingan blog.</li>
+         {% endfor %}
+     </ul>
+     ```
 
-## Selanjutnya
-- Di part 7, kita akan menampilkan detail postingan blog di halaman khusus.
+## Hasil Akhir
+- Website sudah bisa menampilkan detail setiap postingan blog di halaman khusus.
+
+## Selesai
+- Tutorial selesai! Anda sudah memiliki aplikasi blog sederhana dengan Django.

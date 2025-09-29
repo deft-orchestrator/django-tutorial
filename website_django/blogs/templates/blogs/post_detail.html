@@ -1,0 +1,32 @@
+<!DOCTYPE html><!DOCTYPE html>
+
+<html lang="en"><html lang="en">
+
+<head><head>
+
+    <meta charset="UTF-8">    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{{ post.title }}</title>    <title>{{ post.title }}</title>
+
+</head>    {% load static %}
+
+<body>    <link rel="stylesheet" href="{% static 'blogs/css/blogs.css' %}">
+
+    <h1>{{ post.title }}</h1></head>
+
+    <p>{{ post.content }}</p><body>
+
+    <small>Published on {{ post.published_date }}</small>    <h1>{{ post.title }}</h1>
+
+    <br>    <p>{{ post.content }}</p>
+
+    <a href="{% url 'post_list' %}">Back to Blog List</a>    <small>Published on {{ post.published_date }}</small>
+
+</body>    <br>
+
+</html>    <a href="{% url 'post_list' %}">Back to Blog List</a>
+
+</body>
+</html>

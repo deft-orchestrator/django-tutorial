@@ -14,26 +14,15 @@
 
 <body>    <link rel="stylesheet" href="{% static 'blogs/css/blogs.css' %}">
 
-    <h1>Daftar Postingan Blog</h1></head>
 
-    <ul><body>
-
-        {% for post in blog_posts %}    <h1>Blog List</h1>
-
-            <li>{{ post.title }}</li>    <ul>
-
-        {% empty %}        {% for post in page_obj %}
-
-            <li>Tidak ada postingan blog.</li>            <li>
-
-        {% endfor %}                <h2><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a></h2>
-
-    </ul>            </li>
-
-</body>        {% empty %}
-
-</html>            <li>No blog posts available.</li>
-
+    <h1>Daftar Postingan Blog</h1>
+    <ul>
+        {% for post in blog_posts %}
+            <li>
+                <h2><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a></h2>
+            </li>
+        {% empty %}
+            <li>Tidak ada postingan blog.</li>
         {% endfor %}
     </ul>
 
