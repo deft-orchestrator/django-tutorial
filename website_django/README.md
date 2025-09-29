@@ -75,38 +75,63 @@ Berikut adalah panduan langkah demi langkah untuk tutorial ini. Setiap bagian me
 
 
 
-# Part 5: Routing URL dan Views di Django
 
-Dokumentasi ini menjelaskan secara detail langkah-langkah yang dilakukan pada part 5 tutorial membangun aplikasi blog sederhana dengan Django.
+# Part 6: Menampilkan Data Blog dengan Template
 
-## Tujuan Part 5
-- Membuat routing URL dan views untuk menampilkan halaman blog sederhana
+Dokumentasi ini menjelaskan secara detail langkah-langkah yang dilakukan pada part 6 tutorial membangun aplikasi blog sederhana dengan Django.
+
+## Tujuan Part 6
+- Menampilkan data postingan blog dari database ke halaman web menggunakan template HTML
 
 ## Langkah-langkah
 
-1. **Membuat Fungsi View Home**
-     - Tambahkan kode berikut ke `blogs/views.py`:
-         ```python
-         from django.http import HttpResponse
+1. **Membuat Template HTML**
+   - Buat file `post_list.html` di `blogs/templates/blogs/` dengan kode:
+     ```html
+     <!DOCTYPE html>
+     <html lang="en">
+     <head>
+         <meta charset="UTF-8">
+         <meta name="viewport" content="width=device-width, initial-scale=1">
+         <title>Blog List</title>
+     </head>
+     <body>
+         <h1>Daftar Postingan Blog</h1>
+         <ul>
+             {% for post in blog_posts %}
+                 <li>{{ post.title }}</li>
+             {% empty %}
+                 <li>Tidak ada postingan blog.</li>
+             {% endfor %}
+         </ul>
+     </body>
+     </html>
+     ```
 
-         def home(request):
-                 html_header_and_title = "<h1>Selamat Datang di Blog Saya</h1>"
-                 return HttpResponse(html_header_and_title)
-         ```
+2. **Membuat View post_list**
+   - Tambahkan kode berikut ke `blogs/views.py`:
+     ```python
+     from django.shortcuts import render
+     from .models import Post
 
-2. **Menambahkan Routing URL di blogs/urls.py**
-     - Tambahkan kode berikut ke `blogs/urls.py`:
-         ```python
-         from django.urls import path
-         from .views import home
+     def post_list(request):
+         blog_posts = Post.objects.all()
+         return render(request, 'blogs/post_list.html', {'blog_posts': blog_posts})
+     ```
 
-         urlpatterns = [
-                 path('', home, name='home'),
-         ]
-         ```
+3. **Update Routing URL di blogs/urls.py**
+   - Update routing agar mengarah ke view `post_list`:
+     ```python
+     from django.urls import path
+     from .views import post_list
+
+     urlpatterns = [
+         path('', post_list, name='post_list'),
+     ]
+     ```
 
 ## Hasil Akhir
-- Website sudah bisa menampilkan halaman blog sederhana melalui URL `/blogs/`.
+- Website sudah bisa menampilkan daftar postingan blog dari database secara dinamis.
 
 ## Selanjutnya
-- Di part 6, kita akan menampilkan data postingan blog dari database menggunakan template.
+- Di part 7, kita akan menampilkan detail postingan blog di halaman khusus.

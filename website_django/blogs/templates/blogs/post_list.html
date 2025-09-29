@@ -1,0 +1,54 @@
+<!DOCTYPE html><!DOCTYPE html>
+
+<html lang="en"><html lang="en">
+
+<head><head>
+
+    <meta charset="UTF-8">    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Blog List</title>    <title>Blog List</title>
+
+</head>    {% load static %}
+
+<body>    <link rel="stylesheet" href="{% static 'blogs/css/blogs.css' %}">
+
+    <h1>Daftar Postingan Blog</h1></head>
+
+    <ul><body>
+
+        {% for post in blog_posts %}    <h1>Blog List</h1>
+
+            <li>{{ post.title }}</li>    <ul>
+
+        {% empty %}        {% for post in page_obj %}
+
+            <li>Tidak ada postingan blog.</li>            <li>
+
+        {% endfor %}                <h2><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a></h2>
+
+    </ul>            </li>
+
+</body>        {% empty %}
+
+</html>            <li>No blog posts available.</li>
+
+        {% endfor %}
+    </ul>
+
+    <div class="pagination">
+        <span>
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+            {% endif %}
+
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">Next</a>
+            {% endif %}
+        </span>
+    </div>
+</body>
+</html>
