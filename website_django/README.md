@@ -73,46 +73,42 @@ Berikut adalah panduan langkah demi langkah untuk tutorial ini. Setiap bagian me
 
 
 
-# Part 3: Membuat Model dan Migrasi Database
 
-Dokumentasi ini menjelaskan secara detail langkah-langkah yang dilakukan pada part 3 tutorial membangun aplikasi blog sederhana dengan Django.
+# Part 4: Mengelola Data Blog melalui Django Admin
 
-## Tujuan Part 3
-- Membuat model `Post` untuk aplikasi blog
-- Melakukan migrasi database agar model tersedia di database
+Dokumentasi ini menjelaskan secara detail langkah-langkah yang dilakukan pada part 4 tutorial membangun aplikasi blog sederhana dengan Django.
+
+## Tujuan Part 4
+- Mengelola data postingan blog menggunakan halaman admin bawaan Django
+- Mendaftarkan model `Post` ke admin agar bisa CRUD data blog
 
 ## Langkah-langkah
 
-1. **Membuat Model Post**
-    - Tambahkan kode berikut ke `blogs/models.py`:
-      ```python
-      from django.db import models
-      from django.utils import timezone
+1. **Membuat Superuser**
+     - Jalankan perintah berikut di terminal:
+         ```bash
+         python manage.py createsuperuser
+         ```
+     - Ikuti instruksi untuk membuat akun admin.
 
-      class Post(models.Model):
-            title = models.CharField(max_length=200)
-            content = models.TextField()
-            published_date = models.DateTimeField(default=timezone.now)
+2. **Menjalankan Server dan Mengakses Admin**
+     - Jalankan server:
+         ```bash
+         python manage.py runserver
+         ```
+     - Buka browser dan akses `http://127.0.0.1:8000/admin/`.
 
-            def __str__(self):
-                 return str(self.title)
-      ```
+3. **Mendaftarkan Model Post ke Admin**
+     - Tambahkan kode berikut ke `blogs/admin.py`:
+         ```python
+         from django.contrib import admin
+         from .models import Post
 
-2. **Membuat File Migrasi**
-    - Jalankan perintah berikut di terminal:
-      ```bash
-      python manage.py makemigrations blogs
-      ```
-
-3. **Menjalankan Migrasi ke Database**
-    - Jalankan perintah berikut di terminal:
-      ```bash
-      python manage.py migrate
-      ```
+         admin.site.register(Post)
+         ```
 
 ## Hasil Akhir
-- Database sudah memiliki tabel untuk menyimpan postingan blog.
-- Model `Post` siap digunakan untuk fitur blog selanjutnya.
+- Model `Post` bisa dikelola (CRUD) melalui halaman admin Django.
 
 ## Selanjutnya
-- Di part 4, kita akan mengelola data blog melalui halaman admin Django.
+- Di part 5, kita akan membuat routing URL dan views untuk menampilkan data blog di website.
