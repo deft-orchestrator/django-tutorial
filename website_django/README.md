@@ -17,7 +17,6 @@ Proyek ini adalah aplikasi web blog yang memungkinkan admin untuk membuat, memba
 Berikut adalah panduan langkah demi langkah untuk tutorial ini. Setiap bagian mencakup penjelasan konsep dan kode yang relevan.
 
 *   [**Part 0: Membuat Virtual Environment**](./tutorial/00-virtual-environment.md) - Pelajari mengapa dan bagaimana menggunakan virtual environment untuk proyek Python.
-*   [**Part 1: Membuat Proyek Django**](./tutorial/01-project-setup.md) - Instalasi Django dan pembuatan struktur proyek awal.
 *   [**Part 2: Membuat App Blog**](./tutorial/02-creating-an-app.md) - Cara membuat aplikasi baru di dalam proyek Django dan mendaftarkannya.
 *   [**Part 3: Model dan Migrasi**](./tutorial/03-model-and-migrations.md) - Mendefinisikan struktur data dengan Model dan menerapkannya ke database dengan migrasi.
 *   [**Part 4: Mengelola Data melalui Halaman Admin**](./tutorial/04-django-admin.md) - Menggunakan Django Admin untuk mengelola data aplikasi.
@@ -71,3 +70,52 @@ Berikut adalah panduan langkah demi langkah untuk tutorial ini. Setiap bagian me
     python manage.py runserver
     ```
     Buka browser Anda dan kunjungi `http://127.0.0.1:8000/blogs/`.
+
+# Part 1: Setup Proyek Django
+
+Dokumentasi ini menjelaskan secara detail langkah-langkah yang dilakukan pada part 1 tutorial membangun aplikasi blog sederhana dengan Django.
+
+## Tujuan Part 1
+- Menyiapkan virtual environment untuk project Python
+- Menginstal Django
+- Membuat struktur awal proyek Django
+
+## Langkah-langkah
+
+1. **Membuat Virtual Environment**
+    - Jalankan perintah berikut di terminal:
+      ```bash
+      python -m venv .venv
+      source .venv/bin/activate  # Untuk Linux/Mac
+      .\.venv\Scripts\activate  # Untuk Windows
+      ```
+
+2. **Instalasi Django**
+    - Setelah virtual environment aktif, install Django:
+      ```bash
+      pip install Django
+      ```
+
+3. **Membuat Proyek Django**
+    - Buat folder project (misal: `website_django`) lalu jalankan:
+      ```bash
+      django-admin startproject website_django .
+      ```
+    - Struktur project yang dihasilkan:
+      ```
+      website_django/
+      ├── manage.py
+      └── website_django/
+            ├── __init__.py
+            ├── asgi.py
+            ├── settings.py
+            ├── urls.py
+            └── wsgi.py
+      ```
+
+## Hasil Akhir
+- Proyek Django siap digunakan untuk pengembangan lebih lanjut.
+- Belum ada aplikasi (app) khusus, hanya struktur dasar Django.
+
+## Selanjutnya
+- Di part 2, kita akan membuat aplikasi blog di dalam proyek Django ini.
